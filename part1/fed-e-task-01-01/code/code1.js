@@ -13,3 +13,6 @@
   }, 10)
 */
 
+const wait10 = setTimeout(() => {
+  
+}, 10);
