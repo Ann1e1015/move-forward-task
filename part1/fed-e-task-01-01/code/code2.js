@@ -87,7 +87,7 @@ console.log( firstName(cars) )  // 最终返回 Ferrari FF (第一个 car 的 na
   
   // 1.实现 averageDollarValue 函数
 
-  let averageDollarValue = fp.flowRight(fp.map(_average))
+  let averageDollarValue = fp.flowRight(_average, fp.map(fp.prop('dollar_value')))
   
   // 2.打印测试
   console.log( averageDollarValue(cars) )  // 最终返回 
@@ -102,6 +102,11 @@ console.log( firstName(cars) )  // 最终返回 Ferrari FF (第一个 car 的 na
 let _underscore = fp.replace(/\W+/g, '_') // <--无须改动
 
 // 1.实现 sanitizeNames 函数
+
+let sanitizeNames = fp.map(car => {
+  car.name = (fp.flowRight(_underscore, fp.toLower))(car.name)
+  return car
+})
 
 // 2.打印测试
 console.log( sanitizeNames(cars) )
