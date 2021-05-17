@@ -1,0 +1,17 @@
+{
+  "name": "annie-project",
+  "version": "1.0.0",
+  "description": "to cteate something...",
+  "main": "index.js",
+  "bin": "cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Annie",
+  "license": "ISC",
+  "private": true,
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "inquirer": "^8.0.0"
+  }
+}
