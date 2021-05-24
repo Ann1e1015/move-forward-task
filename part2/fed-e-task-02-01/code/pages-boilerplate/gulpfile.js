@@ -20,28 +20,28 @@ const bs = browserSync.create()
 // const plugins.imagemin = require('gulp-imagemin')
 
 const clean = () => {
-  return del(['dist'])
+  return del(['dist', 'temp'])
 }
 
 const style = () => {
   // 制定base可以保留文件目录
   return src('src/assets/styles/*.scss', { base: 'src' })
     .pipe(plugins.sass({ outputStyle: 'expanded' }))
-    .pipe(dest('dist'))
+    .pipe(dest('temp'))
 }
 
 const script = () => {
   // 制定base可以保留文件目录
   return src('src/assets/scripts/*.js', { base: 'src' })
     .pipe(plugins.babel({ presets: ['@babel/preset-env'] }))
-    .pipe(dest('dist'))
+    .pipe(dest('temp'))
 }
 
 const page = () => {
   return src('src/**/*.html', { base: 'src' })
     .pipe(plugins.swig())
     // .pipe(swig({ data }))  用data可以向模板传值
-    .pipe(dest('dist'))
+    .pipe(dest('temp'))
 }
 
 const image = () => {
@@ -80,7 +80,7 @@ const serve = () => {
     open: false,
     files: 'dist/**',
     server: {
-      baseDir: ['dist', 'src', 'public'],
+      baseDir: ['temp', 'src', 'public'],
       routes: {
         '/node_modules': 'node_modules'
       }
@@ -88,9 +88,31 @@ const serve = () => {
   })
 }
 
+const useref = () => {
+  return src('temp/*.html', { base: 'temp' })
+    .pipe(plugins.useref({ searchPath: ['temp', '.'] }))
+    .pipe(plugins.if(/\.js$/, plugins.uglify()))
+    .pipe(plugins.if(/\.css$/, plugins.cleanCss()))
+    .pipe(plugins.if(/\.html$/, plugins.htmlmin({ 
+      // 折叠所有的html内容
+      collapseWhitespace: true,
+      minifyCSS: true,
+      minifyJS: true
+    })))
+    .pipe(dest('dist'))
+}
+
 const compile = parallel(style, script, page)
 
-const build = series(clean, parallel(compile, image, font, extra))
+const build = series(
+  clean, 
+  parallel(
+    series(compile, useref),
+    image,
+    font,
+    extra
+  )
+)
 
 const develop = series(compile, serve)
 
@@ -98,5 +120,6 @@ module.exports = {
   compile,
   build,
   develop,
+  useref,
   clean
 }
