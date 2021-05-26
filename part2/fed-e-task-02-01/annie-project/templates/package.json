@@ -1,0 +1,34 @@
+{
+  "name": "pages-boilerplate",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Always a pleasure scaffolding your awesome static sites.",
+  "keywords": [
+    "pages-boilerplate",
+    "boilerplate",
+    "pages",
+    "zce"
+  ],
+  "homepage": "https://github.com/zce/pages-boilerplate#readme",
+  "bugs": {
+    "url": "https://github.com/zce/pages-boilerplate/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zce/pages-boilerplate.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "zce",
+    "email": "w@zce.me",
+    "url": "https://zce.me"
+  },
+  "scripts": {
+  },
+  "dependencies": {
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=6"
+  }
+}
