@@ -1,20 +1,10 @@
-# pages-boilerplate
+## 以下是该项目自动化启动方法
 
-[![Build Status][travis-image]][travis-url]
-[![Package Version][version-image]][version-url]
-[![License][license-image]][license-url]
-[![Dependency Status][dependency-image]][dependency-url]
-[![devDependency Status][devdependency-image]][devdependency-url]
-[![Code Style][style-image]][style-url]
-
-> Always a pleasure scaffolding your awesome static sites.
 
 ## Getting Started
 
 ```shell
-# clone repo
-$ git clone https://github.com/zce/pages-boilerplate.git my-awesome-pages
-$ cd my-awesome-pages
+# 进入到pages-boilerplate目录后
 # install dependencies
 $ yarn # or npm install
 ```
@@ -29,20 +19,35 @@ $ yarn <task> [options]
 
 ```shell
 # Runs the app in development mode
-$ yarn serve --port 5210 --open
+$ yarn serve
 # Builds the app for production to the `dist` folder
 $ yarn build --production
+# 一些服务器的配置在serve方法中
+$  bs.init({
+   # 开启服务器提醒
+    notify: false,
+   #  开启的端口
+    port: 8080,
+   #  自动打开浏览器
+    open: false,
+   #  文件位置
+    files: 'dist/**',
+    server: {
+      #  查找资源的目录
+      baseDir: ['temp', 'src', 'public'],
+      routes: {
+        '/node_modules': 'node_modules'
+      }
+    }
+  })
 ```
 
 ### Available Scripts
 
-#### `yarn lint` or `npm run lint`
-
-Lint the styles & scripts files.
-
 #### `yarn compile` or `npm run compile`
 
-Compile the styles & scripts & pages file.
+<!-- 如果需要放出来compile功能，需要在gulpfile.js最后module.exports导出的对象中添加compile方法 -->
+Compile the styles & scripts & pages file. 
 
 #### `yarn serve` or `npm run serve`
 
@@ -58,26 +63,6 @@ Runs the app in development mode with a automated server.
 Builds the app for production to the `dist` folder. It minify source in production mode for the best performance.
 
 ##### options
-
-- `production`: Production mode flag, Default: `false`
-- `prod`: Alias to `production`
-
-#### `yarn start` or `npm run start`
-
-Running projects in production mode.
-
-##### options
-
-- `open`: Open browser on start, Default: `false`
-- `port`: Specify server port, Default: `2080`
-
-#### `yarn deploy` or `npm run deploy`
-
-Deploy the `dist` folder to [GitHub Pages](https://pages.github.com).
-
-##### options
-
-- `branch`: The name of the branch you'll be pushing to, Default: `'gh-pages'`
 
 #### `yarn clean` or `npm run clean`
 

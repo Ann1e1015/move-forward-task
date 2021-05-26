@@ -27,6 +27,7 @@
     "clean": "gulp clean",
     "lint": "gulp lint",
     "serve": "gulp serve",
+    "develop": "gulp develop",
     "build": "gulp build",
     "start": "gulp start",
     "deploy": "gulp deploy --production"
