@@ -3,15 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "echo \"请使用 Webpack Dev Server 实现此任务\"",
-    "build": "echo \"请使用 Webpack 实现此任务\"",
-    "lint": "echo \"请使用 ESLint 实现此任务\""
+    "serve": "webpack serve --config webpack.dev.js",
+    "build": "webpack serve --config webpack.prod.js",
+    "lint": "webpack serve --config webpack.common.js"
   },
   "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^2.6.11"
   },
   "devDependencies": {
+    "html-webpack-plugin": "^5.3.1",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
   },
   "eslintConfig": {
     "root": true,
