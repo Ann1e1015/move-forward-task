@@ -8,8 +8,7 @@ module.exports = {
     'standard'
   ],
   parserOptions: {
-    ecmaVersion: 12,
-    sourceType: 'module'
+    ecmaVersion: 12
   },
   plugins: [
     'vue'
